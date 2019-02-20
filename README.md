@@ -75,3 +75,4 @@ To run test suit
 npm test
 ```
 This will also publish the code-coverage report (Istanbul)
+Currently the code coverage, given by Istanbul is around 83.73%
