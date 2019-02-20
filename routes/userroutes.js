@@ -215,17 +215,17 @@ app.post('/api/v1/resizeimage', tokenVerifier, (req, res) => {
                 res.status(400).send('imageExtError')
               } else {
                 imageExtension = data
-                logger.info("The extension of the image is : " + imageExtension)
-                downloadHelper.download(req.body.imageURL, 'orgImg.'+imageExtension,
+                logger.info('The extension of the image is : ' + imageExtension)
+                downloadHelper.download(req.body.imageURL, 'orgImg.' + imageExtension,
                   () => {
-                    logger.info('Image downloaded : ' + 'orgImg.'+imageExtension)
-                    resize('orgImg.'+imageExtension, imageExtension, parseInt(50), parseInt(50))
+                    logger.info('Image downloaded : ' + 'orgImg.' + imageExtension)
+                    resize('orgImg.' + imageExtension, imageExtension, parseInt(50), parseInt(50))
                       .toFile('resizedImg.' + imageExtension, (resizeErr, data) => {
                         if (resizeErr) {
                           logger.error(resizeErr)
                           res.status(500).send(resizeErr)
                         } else {
-                          logger.info("Image after resize command")
+                          logger.info('Image after resize command')
                           let modifiedImage = fs.readFileSync('resizedImg.' + imageExtension)
                           res.writeHead(200, { 'Content-Type': 'image/' + imageExtension })
                           res.end(modifiedImage, 'binary')
@@ -236,7 +236,6 @@ app.post('/api/v1/resizeimage', tokenVerifier, (req, res) => {
               }
             })
             // What if already dimensions are less than 50, 50?
-
           }
         }
       )

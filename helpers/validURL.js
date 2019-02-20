@@ -5,7 +5,7 @@ const logger = require('../logging')
  * TODO : Make this function better
  * @constructor
  */
-isURL = function (url) {
+const isURL = function (url) {
   if (url.includes('png') || url.includes('jpg') || url.includes('jpeg')) {
     logger.info('The url given is of an image')
   }

@@ -1,4 +1,3 @@
-const fs = require('fs')
 const request = require('request')
 const logger = require('../logging')
 
@@ -6,8 +5,11 @@ const logger = require('../logging')
  * Returns the extension of the image, by knowing its url.
  * @constructor
  */
-tellImageExt = function (uri, callback) {
+const tellImageExt = function (uri, callback) {
   request.head(uri, function (err, res, body) {
+    if (err) {
+      logger.error('Error occured in getting imageExtension')
+    }
     return callback(null, res.headers['content-type'].split('/')[1])
   })
 }

@@ -1,6 +1,7 @@
 const chai = require('chai')
 const chaiHTTP = require('chai-http')
 const should = chai.should()
+const logger = require('../logging')
 
 var app = require('../routes/userroutes.js')
 chai.use(chaiHTTP)
@@ -43,11 +44,15 @@ describe('Mocha tests for all three endpoints', () => {
       .post('/api/v1/login')
       .send(testUser)
       .end(function (err, res) {
-        res.should.have.status(200)
-        res.should.be.json
-        res.body.should.be.a('object')
-        res.body.should.have.property('secretToken')
-        done()
+        if (err) {
+          logger.error('Failed to verify login test')
+        } else {
+          res.should.have.status(200)
+          res.should.be.json
+          res.body.should.be.a('object')
+          res.body.should.have.property('secretToken')
+          done()
+        }
       })
   })
   /**
@@ -101,11 +106,15 @@ describe('Mocha tests for all three endpoints', () => {
         'bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhcmJpdGFyeVVzZXIiOnsidXNlcm5hbWUiOiJyajE5OTciLCJwYXNzd29yZCI6Imhha3VuYW1hdGF0YSJ9LCJpYXQiOjE1NTA2ODQzMTUsImV4cCI6MTU1OTMyNDMxNX0.ngSwdQg1gyTfNZAHN3t_qiQhfu9mlTv1gpWziB4R-kht6eRltKECG-j8IaLz6iAij6dNRdQgKETSM4bvU7Lf6g'
       )
       .end(function (err, res) {
-        res.should.have.status(200)
-        res.should.be.json
-        res.body.should.be.a('object')
-        res.body.should.be.eql(resultJSON)
-        done()
+        if (err) {
+          logger.error('Failed to verify jsonPatch test')
+        } else {
+          res.should.have.status(200)
+          res.should.be.json
+          res.body.should.be.a('object')
+          res.body.should.be.eql(resultJSON)
+          done()
+        }
       })
   })
   /**
@@ -134,7 +143,7 @@ describe('Mocha tests for all three endpoints', () => {
    */
   it('should return resized image of 50*50 given a url /Post request PNG Image', function (done) {
     this.timeout(15000)
-    
+
     const testURL = {
       imageURL: 'https://purepng.com/public/uploads/large/purepng.com-mario-runningmariofictional-charactervideo-gamefranchisenintendodesigner-1701528632710brm3o.png'
     }
@@ -145,8 +154,12 @@ describe('Mocha tests for all three endpoints', () => {
         'bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhcmJpdGFyeVVzZXIiOnsidXNlcm5hbWUiOiJyajE5OTciLCJwYXNzd29yZCI6Imhha3VuYW1hdGF0YSJ9LCJpYXQiOjE1NTA2ODQzMTUsImV4cCI6MTU1OTMyNDMxNX0.ngSwdQg1gyTfNZAHN3t_qiQhfu9mlTv1gpWziB4R-kht6eRltKECG-j8IaLz6iAij6dNRdQgKETSM4bvU7Lf6g'
       )
       .end(function (err, res) {
-        res.should.have.status(200)
-        done()
+        if (err) {
+          logger.error('Failed to verify login test')
+        } else {
+          res.should.have.status(200)
+          done()
+        }
       })
   })
   /**
@@ -186,8 +199,12 @@ describe('Mocha tests for all three endpoints', () => {
         'bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhcmJpdGFyeVVzZXIiOnsidXNlcm5hbWUiOiJyajE5OTciLCJwYXNzd29yZCI6Imhha3VuYW1hdGF0YSJ9LCJpYXQiOjE1NTA2ODQzMTUsImV4cCI6MTU1OTMyNDMxNX0.ngSwdQg1gyTfNZAHN3t_qiQhfu9mlTv1gpWziB4R-kht6eRltKECG-j8IaLz6iAij6dNRdQgKETSM4bvU7Lf6g'
       )
       .end(function (err, res) {
-        res.should.have.status(200)
-        done()
+        if (err) {
+          logger.error('Failed to verify login test')
+        } else {
+          res.should.have.status(200)
+          done()
+        }
       })
   })
 })

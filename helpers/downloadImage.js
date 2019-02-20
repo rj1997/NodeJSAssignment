@@ -8,7 +8,7 @@ const logger = require('../logging')
  */
 
 let download = function (uri, filename, callback) {
-  logger.info('Filename : '+filename)
+  logger.info('Filename : ' + filename)
   request.head(uri, function (err, res, body) {
     if (err) {
       logger.error(err)
