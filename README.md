@@ -1,6 +1,26 @@
+
 # NodeJSAssignment
 
+## Summary
+**Public Endpoint : Login** -> Created using JWT token
+**Protected Endpoint : Apply JSON Patch** -> JWT token required
+**Protected Endpoint : Create Thumbnail** -> JWT token required
 
+## Code considerations
+ - Mocha & Chai used for testing purposes.
+ - Edge cases implemented. Though, some scope of tests is still in updation.
+ - Promises are not used, because the callbacks weren't very deep and there was no problem of callback hell.
+
+## Bonus Task Performance
+- 83.73%  overall code coverage in Istanbul Report. Testing suite has 90.91 % code coverage. With new commits, this is going to rise for sure.
+- JSdoc & Swagger styled explanatory comments are used. The requests were checked by Postman.
+- No use of console.log(). Instead, winston logging tool used to handle errors, debug, info etc.
+- StandardJS  linting is used. Code passes nearly all the linting specifications. See more at https://standardjs.com/rules.html
+```
+Check from terminal : standard  "routes/userroutes.js"
+```
+Similarly, check all the paths.
+- Dockerize : In progress.
 ## Running via Docker image
 
 ```console
@@ -63,6 +83,7 @@ Body
 
 ```
 ## Running natively
+Install dependencies.
 ```console
 npm install
 ```
@@ -70,9 +91,14 @@ To start server
 ```console
 npm start
 ```
-To run test suit  
+To run test suite
 ```console
 npm test
 ```
+OR If Mocha permissions are not present?
+'''console
+chmod 0777 ./node_modules/.bin/mocha
+npm test
+'''
 This will also publish the code-coverage report (Istanbul)
 Currently the code coverage, given by Istanbul is around 83.73%
