@@ -1,10 +1,11 @@
 
 # NodeJSAssignment
+Assignment done as a task for SocialCops internship.
 
 ## Summary
-**Public Endpoint : Login** -> Created using JWT token
-**Protected Endpoint : Apply JSON Patch** -> JWT token required
-**Protected Endpoint : Create Thumbnail** -> JWT token required
+**Public Endpoint : Login** -> Created using JWT token <br/>
+**Protected Endpoint : Apply JSON Patch** -> JWT token required <br/>
+**Protected Endpoint : Create Thumbnail** -> JWT token required <br/>
 
 ## Code considerations
  - Mocha & Chai used for testing purposes.
@@ -96,9 +97,9 @@ To run test suite
 npm test
 ```
 OR If Mocha permissions are not present?
-'''console
+```
 chmod 0777 ./node_modules/.bin/mocha
 npm test
-'''
+```
 This will also publish the code-coverage report (Istanbul)
 Currently the code coverage, given by Istanbul is around 83.73%
